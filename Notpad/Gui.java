@@ -39,6 +39,7 @@ public class Gui extends javax.swing.JFrame {
     }
     
     public static String getTextBoxValue(){
+        
         String str = textBox.getText();
         return str;
     }
@@ -56,7 +57,6 @@ public class Gui extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         themeGroup = new javax.swing.ButtonGroup();
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        panel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         textBox = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -95,18 +95,8 @@ public class Gui extends javax.swing.JFrame {
         textBox.setColumns(20);
         textBox.setFont(new java.awt.Font("Courier New", 0, 15)); // NOI18N
         textBox.setRows(5);
+        textBox.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         jScrollPane1.setViewportView(textBox);
-
-        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(panelLayout);
-        panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
-        );
-        panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-        );
 
         jMenu1.setText("File");
         jMenu1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -235,13 +225,11 @@ public class Gui extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
         );
 
         pack();
@@ -425,7 +413,6 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JMenuItem openMenu;
-    private javax.swing.JPanel panel;
     private javax.swing.JMenuItem saveAsMenu;
     private javax.swing.JMenuItem savemenu;
     private static javax.swing.JTextArea textBox;
