@@ -53,9 +53,12 @@ public class Gui extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollBar1 = new javax.swing.JScrollBar();
+        jLabel1 = new javax.swing.JLabel();
+        themeGroup = new javax.swing.ButtonGroup();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        panel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         textBox = new javax.swing.JTextArea();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         newMenu = new javax.swing.JMenuItem();
@@ -69,13 +72,12 @@ public class Gui extends javax.swing.JFrame {
         defaultColorMenu = new javax.swing.JRadioButtonMenuItem();
         grayColorMenu = new javax.swing.JRadioButtonMenuItem();
         blackColorMenu = new javax.swing.JRadioButtonMenuItem();
+        blueColorMenu = new javax.swing.JRadioButtonMenuItem();
         aboutMenu = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1.setText("jLabel1");
 
-        textBox.setColumns(20);
-        textBox.setRows(5);
-        jScrollPane1.setViewportView(textBox);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jInternalFrame1.setVisible(true);
 
@@ -90,9 +92,27 @@ public class Gui extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        textBox.setColumns(20);
+        textBox.setFont(new java.awt.Font("Courier New", 0, 15)); // NOI18N
+        textBox.setRows(5);
+        jScrollPane1.setViewportView(textBox);
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+        );
+
         jMenu1.setText("File");
+        jMenu1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         newMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         newMenu.setText("New");
         newMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +122,7 @@ public class Gui extends javax.swing.JFrame {
         jMenu1.add(newMenu);
 
         openMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        openMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         openMenu.setText("Open");
         openMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +132,7 @@ public class Gui extends javax.swing.JFrame {
         jMenu1.add(openMenu);
 
         savemenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        savemenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         savemenu.setText("Save");
         savemenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +142,7 @@ public class Gui extends javax.swing.JFrame {
         jMenu1.add(savemenu);
 
         saveAsMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        saveAsMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         saveAsMenu.setText("Save As …");
         saveAsMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +153,7 @@ public class Gui extends javax.swing.JFrame {
         jMenu1.add(jSeparator1);
 
         exitMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        exitMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         exitMenu.setText("Exit");
         exitMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,14 +165,18 @@ public class Gui extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+        jMenu2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         themesMenu.setText("Themes");
+        themesMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         themesMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 themesMenuActionPerformed(evt);
             }
         });
 
+        themeGroup.add(defaultColorMenu);
+        defaultColorMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         defaultColorMenu.setSelected(true);
         defaultColorMenu.setText("Default");
         defaultColorMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +186,8 @@ public class Gui extends javax.swing.JFrame {
         });
         themesMenu.add(defaultColorMenu);
 
+        themeGroup.add(grayColorMenu);
+        grayColorMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         grayColorMenu.setText("Gray");
         grayColorMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +196,8 @@ public class Gui extends javax.swing.JFrame {
         });
         themesMenu.add(grayColorMenu);
 
+        themeGroup.add(blackColorMenu);
+        blackColorMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         blackColorMenu.setText("Black");
         blackColorMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,8 +206,19 @@ public class Gui extends javax.swing.JFrame {
         });
         themesMenu.add(blackColorMenu);
 
+        themeGroup.add(blueColorMenu);
+        blueColorMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        blueColorMenu.setText("Blue");
+        blueColorMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blueColorMenuActionPerformed(evt);
+            }
+        });
+        themesMenu.add(blueColorMenu);
+
         jMenu2.add(themesMenu);
 
+        aboutMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         aboutMenu.setText("About");
         aboutMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,11 +235,13 @@ public class Gui extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -243,14 +288,17 @@ public class Gui extends javax.swing.JFrame {
                 public void windowClosing(WindowEvent e) {
                     super.windowClosing(e);
                     sf.setVisible(false);
+                    Gui.this.setTitle(saveFileName);
                 }
-            
+                
             });
+            
         }
         else{
             setSaveFilename();
             Output.writeData(saveFileName, textBox.getText());
         }
+        this.setTitle(saveFileName);
         saveTime++;
     }//GEN-LAST:event_savemenuActionPerformed
 
@@ -267,7 +315,7 @@ public class Gui extends javax.swing.JFrame {
                 sf.setVisible(false);
             }      
         });
-        
+        this.setTitle(saveFileName);
     }//GEN-LAST:event_saveAsMenuActionPerformed
 
     private void exitMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuActionPerformed
@@ -288,10 +336,6 @@ public class Gui extends javax.swing.JFrame {
     private void defaultColorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultColorMenuActionPerformed
         // TODO add your handling code here:
         //DEFAULT THEME
-        defaultColorMenu.setSelected(true);
-        grayColorMenu.setSelected(false);
-        blackColorMenu.setSelected(false);
-        
         textBox.setBackground(Color.white);
         textBox.setForeground(Color.black);
         textBox.setCaretColor(Color.black);
@@ -300,10 +344,6 @@ public class Gui extends javax.swing.JFrame {
     private void grayColorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grayColorMenuActionPerformed
         // TODO add your handling code here:
         //GRAY THEME
-        defaultColorMenu.setSelected(false);
-        grayColorMenu.setSelected(true);
-        blackColorMenu.setSelected(false);
-        
         textBox.setBackground(Color.lightGray);
         textBox.setForeground(Color.black);
         textBox.setCaretColor(Color.black);
@@ -312,10 +352,6 @@ public class Gui extends javax.swing.JFrame {
     private void blackColorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackColorMenuActionPerformed
         // TODO add your handling code here:
         //BLACK THEME
-        defaultColorMenu.setSelected(false);
-        grayColorMenu.setSelected(false);
-        blackColorMenu.setSelected(true);
-        
         textBox.setBackground(Color.BLACK);
         textBox.setForeground(Color.WHITE);
         textBox.setCaretColor(Color.WHITE);
@@ -326,6 +362,14 @@ public class Gui extends javax.swing.JFrame {
         //ABOUT
         JOptionPane.showMessageDialog(null, "Notepad version 1.0\nCreated by Hadi Najafi\nA TIHU Soft© Application", "About", -1);
     }//GEN-LAST:event_aboutMenuActionPerformed
+
+    private void blueColorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blueColorMenuActionPerformed
+        // TODO add your handling code here:
+        //BLUE THEME
+        textBox.setBackground(Color.BLUE);
+        textBox.setForeground(Color.WHITE);
+        textBox.setCaretColor(Color.WHITE);
+    }//GEN-LAST:event_blueColorMenuActionPerformed
 
     
     
@@ -367,10 +411,12 @@ public class Gui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenu;
     private javax.swing.JRadioButtonMenuItem blackColorMenu;
+    private javax.swing.JRadioButtonMenuItem blueColorMenu;
     private javax.swing.JRadioButtonMenuItem defaultColorMenu;
     private javax.swing.JMenuItem exitMenu;
     private javax.swing.JRadioButtonMenuItem grayColorMenu;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -379,9 +425,11 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JMenuItem openMenu;
+    private javax.swing.JPanel panel;
     private javax.swing.JMenuItem saveAsMenu;
     private javax.swing.JMenuItem savemenu;
     private static javax.swing.JTextArea textBox;
+    private javax.swing.ButtonGroup themeGroup;
     private javax.swing.JMenu themesMenu;
     // End of variables declaration//GEN-END:variables
 }
