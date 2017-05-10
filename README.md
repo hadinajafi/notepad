@@ -1,3 +1,2 @@
 # notepad
-A very simple notepad for taking notes
-It has some problems and needs improvments. First, needs improvment for EXIT_ON_CLOSE option. Needs improvment for open and save files. open and save files, get complete path name from user. its can be better for open and save operation.
+A very simple notepad for taking notes. it has also some themes for editing texts in night. and you can save your note or open notes in any format.
