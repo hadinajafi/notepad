@@ -7,6 +7,7 @@ package Notpad;
 
 import java.awt.Color;
 import java.awt.FileDialog;
+import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -56,6 +57,7 @@ public class Gui extends javax.swing.JFrame {
         jScrollBar1 = new javax.swing.JScrollBar();
         jLabel1 = new javax.swing.JLabel();
         themeGroup = new javax.swing.ButtonGroup();
+        fontGroup = new javax.swing.ButtonGroup();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textBox = new javax.swing.JTextArea();
@@ -73,6 +75,17 @@ public class Gui extends javax.swing.JFrame {
         grayColorMenu = new javax.swing.JRadioButtonMenuItem();
         blackColorMenu = new javax.swing.JRadioButtonMenuItem();
         blueColorMenu = new javax.swing.JRadioButtonMenuItem();
+        fontMenu = new javax.swing.JMenu();
+        sansFont = new javax.swing.JRadioButtonMenuItem();
+        serifFont = new javax.swing.JRadioButtonMenuItem();
+        couriernewFont = new javax.swing.JRadioButtonMenuItem();
+        forgroundColorMenu = new javax.swing.JMenu();
+        fontColorBlack = new javax.swing.JMenuItem();
+        blueFontColor = new javax.swing.JMenuItem();
+        redFontColor = new javax.swing.JMenuItem();
+        grayFontColor = new javax.swing.JMenuItem();
+        whiteFontColor = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         aboutMenu = new javax.swing.JMenuItem();
 
         jLabel1.setText("jLabel1");
@@ -94,8 +107,10 @@ public class Gui extends javax.swing.JFrame {
 
         textBox.setColumns(20);
         textBox.setFont(new java.awt.Font("Courier New", 0, 15)); // NOI18N
+        textBox.setLineWrap(true);
         textBox.setRows(5);
         textBox.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        textBox.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(textBox);
 
         jMenu1.setText("File");
@@ -140,6 +155,8 @@ public class Gui extends javax.swing.JFrame {
             }
         });
         jMenu1.add(saveAsMenu);
+
+        jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
         jMenu1.add(jSeparator1);
 
         exitMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
@@ -207,6 +224,95 @@ public class Gui extends javax.swing.JFrame {
         themesMenu.add(blueColorMenu);
 
         jMenu2.add(themesMenu);
+
+        fontMenu.setText("Font");
+        fontMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        fontGroup.add(sansFont);
+        sansFont.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        sansFont.setText("Sans");
+        sansFont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sansFontActionPerformed(evt);
+            }
+        });
+        fontMenu.add(sansFont);
+
+        fontGroup.add(serifFont);
+        serifFont.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        serifFont.setText("Serif");
+        serifFont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serifFontActionPerformed(evt);
+            }
+        });
+        fontMenu.add(serifFont);
+
+        fontGroup.add(couriernewFont);
+        couriernewFont.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        couriernewFont.setSelected(true);
+        couriernewFont.setText("Courier New");
+        couriernewFont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                couriernewFontActionPerformed(evt);
+            }
+        });
+        fontMenu.add(couriernewFont);
+
+        jMenu2.add(fontMenu);
+
+        forgroundColorMenu.setText("Font Color");
+        forgroundColorMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        fontColorBlack.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        fontColorBlack.setText("Black");
+        fontColorBlack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fontColorBlackActionPerformed(evt);
+            }
+        });
+        forgroundColorMenu.add(fontColorBlack);
+
+        blueFontColor.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        blueFontColor.setText("Blue");
+        blueFontColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blueFontColorActionPerformed(evt);
+            }
+        });
+        forgroundColorMenu.add(blueFontColor);
+
+        redFontColor.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        redFontColor.setText("Red");
+        redFontColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redFontColorActionPerformed(evt);
+            }
+        });
+        forgroundColorMenu.add(redFontColor);
+
+        grayFontColor.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        grayFontColor.setText("Gray");
+        grayFontColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grayFontColorActionPerformed(evt);
+            }
+        });
+        forgroundColorMenu.add(grayFontColor);
+
+        whiteFontColor.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        whiteFontColor.setText("White");
+        whiteFontColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                whiteFontColorActionPerformed(evt);
+            }
+        });
+        forgroundColorMenu.add(whiteFontColor);
+
+        jMenu2.add(forgroundColorMenu);
+
+        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+        jMenu2.add(jSeparator2);
 
         aboutMenu.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         aboutMenu.setText("About");
@@ -359,6 +465,46 @@ public class Gui extends javax.swing.JFrame {
         textBox.setCaretColor(Color.WHITE);
     }//GEN-LAST:event_blueColorMenuActionPerformed
 
+    private void sansFontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sansFontActionPerformed
+        // TODO add your handling code here:
+        textBox.setFont(new Font("Sans", Font.PLAIN, 15));
+    }//GEN-LAST:event_sansFontActionPerformed
+
+    private void serifFontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serifFontActionPerformed
+        // TODO add your handling code here:
+        textBox.setFont(new Font("Serif", Font.PLAIN, 15));
+    }//GEN-LAST:event_serifFontActionPerformed
+
+    private void couriernewFontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_couriernewFontActionPerformed
+        // TODO add your handling code here:
+        textBox.setFont(new Font("Courier New", Font.PLAIN, 15));
+    }//GEN-LAST:event_couriernewFontActionPerformed
+
+    private void fontColorBlackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontColorBlackActionPerformed
+        // TODO add your handling code here:
+        textBox.setForeground(Color.BLACK);
+    }//GEN-LAST:event_fontColorBlackActionPerformed
+
+    private void blueFontColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blueFontColorActionPerformed
+        // TODO add your handling code here:
+        textBox.setForeground(Color.blue);
+    }//GEN-LAST:event_blueFontColorActionPerformed
+
+    private void redFontColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redFontColorActionPerformed
+        // TODO add your handling code here:
+        textBox.setForeground(Color.red);
+    }//GEN-LAST:event_redFontColorActionPerformed
+
+    private void grayFontColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grayFontColorActionPerformed
+        // TODO add your handling code here:
+        textBox.setForeground(Color.GRAY);
+    }//GEN-LAST:event_grayFontColorActionPerformed
+
+    private void whiteFontColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteFontColorActionPerformed
+        // TODO add your handling code here:
+        textBox.setForeground(Color.WHITE);
+    }//GEN-LAST:event_whiteFontColorActionPerformed
+
     
     
     /**
@@ -400,9 +546,16 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JMenuItem aboutMenu;
     private javax.swing.JRadioButtonMenuItem blackColorMenu;
     private javax.swing.JRadioButtonMenuItem blueColorMenu;
+    private javax.swing.JMenuItem blueFontColor;
+    private javax.swing.JRadioButtonMenuItem couriernewFont;
     private javax.swing.JRadioButtonMenuItem defaultColorMenu;
     private javax.swing.JMenuItem exitMenu;
+    private javax.swing.JMenuItem fontColorBlack;
+    private javax.swing.ButtonGroup fontGroup;
+    private javax.swing.JMenu fontMenu;
+    private javax.swing.JMenu forgroundColorMenu;
     private javax.swing.JRadioButtonMenuItem grayColorMenu;
+    private javax.swing.JMenuItem grayFontColor;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
@@ -411,12 +564,17 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuItem newMenu;
     private javax.swing.JMenuItem openMenu;
+    private javax.swing.JMenuItem redFontColor;
+    private javax.swing.JRadioButtonMenuItem sansFont;
     private javax.swing.JMenuItem saveAsMenu;
     private javax.swing.JMenuItem savemenu;
+    private javax.swing.JRadioButtonMenuItem serifFont;
     private static javax.swing.JTextArea textBox;
     private javax.swing.ButtonGroup themeGroup;
     private javax.swing.JMenu themesMenu;
+    private javax.swing.JMenuItem whiteFontColor;
     // End of variables declaration//GEN-END:variables
 }
