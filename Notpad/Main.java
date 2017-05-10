@@ -5,6 +5,11 @@
  */
 package Notpad;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hadi
@@ -16,8 +21,25 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
         Gui gui = new Gui();
-        gui.setTitle("NotePad");
+        gui.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        gui.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e); //To change body of generated methods, choose Tools | Templates.
+                int a = JOptionPane.showConfirmDialog(null, "Are you sure you want to Discard changes?", "Confirmation", 0);
+                if (a == 0)
+                {
+                    System.exit(0);
+                }
+            }      
+        });
+        
+        if(gui.getSaveFilename() != null)
+            gui.setTitle("Notepad" + gui.getSaveFilename());
+        else
+            gui.setTitle("Notepad"); 
         gui.setVisible(true);
 
     }

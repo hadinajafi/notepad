@@ -9,7 +9,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,17 +24,26 @@ public class Input {
             fis = new FileReader(filename);
         } catch (FileNotFoundException ex) {
             ex.getMessage();
+            JOptionPane.showMessageDialog(null, "File not Found", "Opening Failed", 2);
             return null;
         }
         BufferedReader bf = new BufferedReader(fis);
-        String line, data=null;
+        String line, data = "";
         try {
             line = bf.readLine();
+            while(line!=null){
             data += line + "\n";
-            bf.close();
+            line = bf.readLine();
+            }
+            
         } catch (IOException ex) {
             ex.getMessage();
             return null;
+        }
+        try {
+            bf.close();
+        } catch (IOException ex) {
+            ex.getMessage();
         }
         return data;
     }

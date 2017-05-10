@@ -6,6 +6,10 @@
 package Notpad;
 
 import java.awt.Color;
+import java.awt.FileDialog;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,9 +17,10 @@ import javax.swing.JOptionPane;
  * @author hadi
  */
 public class Gui extends javax.swing.JFrame {
-    
-    private String filename;
+    private String openFileName;
+    private String saveFileName;
     private int saveTime = 1;
+    private saveForm sf;
 
     /**
      * Creates new form Gui
@@ -24,10 +29,20 @@ public class Gui extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void setFilename() {
-        filename = JOptionPane.showInputDialog(null, "Enter location", "Enter File Name", 1);
+    public void setSaveFilename() {
+//        sf = new saveForm();
+        saveFileName = sf.getPathName();
     }
-
+    public String getSaveFilename()
+    {
+        return this.saveFileName;
+    }
+    
+    public static String getTextBoxValue(){
+        String str = textBox.getText();
+        return str;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,28 +54,28 @@ public class Gui extends javax.swing.JFrame {
 
         jScrollBar1 = new javax.swing.JScrollBar();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textBox = new javax.swing.JTextArea();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        newMenu = new javax.swing.JMenuItem();
+        openMenu = new javax.swing.JMenuItem();
+        savemenu = new javax.swing.JMenuItem();
+        saveAsMenu = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        exitMenu = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        themesMenu = new javax.swing.JMenu();
+        defaultColorMenu = new javax.swing.JRadioButtonMenuItem();
+        grayColorMenu = new javax.swing.JRadioButtonMenuItem();
+        blackColorMenu = new javax.swing.JRadioButtonMenuItem();
+        aboutMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textBox.setColumns(20);
+        textBox.setRows(5);
+        jScrollPane1.setViewportView(textBox);
 
         jInternalFrame1.setVisible(true);
 
@@ -77,97 +92,97 @@ public class Gui extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("New");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        newMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newMenu.setText("New");
+        newMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                newMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(newMenu);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem6.setText("Open");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        openMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        openMenu.setText("Open");
+        openMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                openMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem6);
+        jMenu1.add(openMenu);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem4.setText("Save");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        savemenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        savemenu.setText("Save");
+        savemenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                savemenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(savemenu);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem5.setText("Save As …");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        saveAsMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        saveAsMenu.setText("Save As …");
+        saveAsMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                saveAsMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMenu1.add(saveAsMenu);
         jMenu1.add(jSeparator1);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem3.setText("Exit");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        exitMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        exitMenu.setText("Exit");
+        exitMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                exitMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(exitMenu);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
 
-        jMenu3.setText("Themes");
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+        themesMenu.setText("Themes");
+        themesMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
+                themesMenuActionPerformed(evt);
             }
         });
 
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("Default");
-        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        defaultColorMenu.setSelected(true);
+        defaultColorMenu.setText("Default");
+        defaultColorMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem1ActionPerformed(evt);
+                defaultColorMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jRadioButtonMenuItem1);
+        themesMenu.add(defaultColorMenu);
 
-        jRadioButtonMenuItem2.setText("Gray");
-        jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        grayColorMenu.setText("Gray");
+        grayColorMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem2ActionPerformed(evt);
+                grayColorMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jRadioButtonMenuItem2);
+        themesMenu.add(grayColorMenu);
 
-        jRadioButtonMenuItem3.setText("Black");
-        jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        blackColorMenu.setText("Black");
+        blackColorMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem3ActionPerformed(evt);
+                blackColorMenuActionPerformed(evt);
             }
         });
-        jMenu3.add(jRadioButtonMenuItem3);
+        themesMenu.add(blackColorMenu);
 
-        jMenu2.add(jMenu3);
+        jMenu2.add(themesMenu);
 
-        jMenuItem2.setText("About");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        aboutMenu.setText("About");
+        aboutMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                aboutMenuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(aboutMenu);
 
         jMenuBar1.add(jMenu2);
 
@@ -177,107 +192,140 @@ public class Gui extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void newMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuActionPerformed
         // TODO add your handling code here:
-        //NEW button  
-        int c = JOptionPane.showConfirmDialog(null, "Are you sure to discard changes?", "Confirmation", 2, 1);
-        if (c == 0) {
-            jTextArea1.setText("");
+        //NEW button
+        if("".equals(textBox.getText())){
+            saveFileName = null;
+            sf.setPathName(null);
+            saveTime = 1;
         }
-        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        else{
+            int i = JOptionPane.showConfirmDialog(null, "Are you sure to discard changes?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if(i == 0){
+                textBox.setText("");
+                saveFileName = null;
+                sf.setPathName(null);
+                saveTime = 1;
+            }
+        }
+    }//GEN-LAST:event_newMenuActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void openMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuActionPerformed
         // TODO add your handling code here:
         //OPEN button
-        setFilename();
-        String t = Input.readData(filename);
-        jTextArea1.setText(t);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+        FileDialog fd = new FileDialog(this, "Open", FileDialog.LOAD);
+        fd.setVisible(true);
+        openFileName = fd.getFiles()[0].getAbsolutePath();
+        textBox.setText(Input.readData(openFileName));
+        
+    }//GEN-LAST:event_openMenuActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void savemenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savemenuActionPerformed
         // TODO add your handling code here:
         //SAVE button
-        if (saveTime == 1) {
-            setFilename();
+        if (saveTime == 1 || sf.getPathName()==null) {
+            sf = new saveForm();
+            sf.setVisible(true);
+            sf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            sf.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    super.windowClosing(e);
+                    sf.setVisible(false);
+                }
+            
+            });
         }
-        Output.writeData(filename, jTextArea1.getText());
+        else{
+            setSaveFilename();
+            Output.writeData(saveFileName, textBox.getText());
+        }
         saveTime++;
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_savemenuActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void saveAsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuActionPerformed
         // TODO add your handling code here:
         //SAVE AS button
-        setFilename();
-        Output.writeData(filename, jTextArea1.getText());
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+        sf = new saveForm();
+        sf.setVisible(true);
+        sf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        sf.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                sf.setVisible(false);
+            }      
+        });
+        
+    }//GEN-LAST:event_saveAsMenuActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void exitMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuActionPerformed
         // TODO add your handling code here:
         //EXIT button
         int c;
-        c = JOptionPane.showConfirmDialog(null, "Are you sure you want to Exit?", "Confirmation", 2, 1);
+        c = JOptionPane.showConfirmDialog(null, "Are you sure you want to Exit?", "Confirmation", 0);
         if (c == 0) {
             System.exit(0);
         }
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_exitMenuActionPerformed
 
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+    private void themesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themesMenuActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jMenu3ActionPerformed
+    }//GEN-LAST:event_themesMenuActionPerformed
 
-    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
+    private void defaultColorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultColorMenuActionPerformed
         // TODO add your handling code here:
         //DEFAULT THEME
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem2.setSelected(false);
-        jRadioButtonMenuItem3.setSelected(false);
+        defaultColorMenu.setSelected(true);
+        grayColorMenu.setSelected(false);
+        blackColorMenu.setSelected(false);
         
-        jTextArea1.setBackground(Color.white);
-        jTextArea1.setForeground(Color.black);
-        jTextArea1.setCaretColor(Color.black);
-    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+        textBox.setBackground(Color.white);
+        textBox.setForeground(Color.black);
+        textBox.setCaretColor(Color.black);
+    }//GEN-LAST:event_defaultColorMenuActionPerformed
 
-    private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
+    private void grayColorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grayColorMenuActionPerformed
         // TODO add your handling code here:
         //GRAY THEME
-        jRadioButtonMenuItem1.setSelected(false);
-        jRadioButtonMenuItem2.setSelected(true);
-        jRadioButtonMenuItem3.setSelected(false);
+        defaultColorMenu.setSelected(false);
+        grayColorMenu.setSelected(true);
+        blackColorMenu.setSelected(false);
         
-        jTextArea1.setBackground(Color.lightGray);
-        jTextArea1.setForeground(Color.black);
-        jTextArea1.setCaretColor(Color.black);
-    }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
+        textBox.setBackground(Color.lightGray);
+        textBox.setForeground(Color.black);
+        textBox.setCaretColor(Color.black);
+    }//GEN-LAST:event_grayColorMenuActionPerformed
 
-    private void jRadioButtonMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem3ActionPerformed
+    private void blackColorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackColorMenuActionPerformed
         // TODO add your handling code here:
         //BLACK THEME
-        jRadioButtonMenuItem1.setSelected(false);
-        jRadioButtonMenuItem2.setSelected(false);
-        jRadioButtonMenuItem3.setSelected(true);
+        defaultColorMenu.setSelected(false);
+        grayColorMenu.setSelected(false);
+        blackColorMenu.setSelected(true);
         
-        jTextArea1.setBackground(Color.BLACK);
-        jTextArea1.setForeground(Color.WHITE);
-        jTextArea1.setCaretColor(Color.WHITE);
-    }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
+        textBox.setBackground(Color.BLACK);
+        textBox.setForeground(Color.WHITE);
+        textBox.setCaretColor(Color.WHITE);
+    }//GEN-LAST:event_blackColorMenuActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void aboutMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuActionPerformed
         // TODO add your handling code here:
         //ABOUT
         JOptionPane.showMessageDialog(null, "Notepad version 1.0\nCreated by Hadi Najafi\nA TIHU Soft© Application", "About", -1);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_aboutMenuActionPerformed
 
     
     
@@ -317,23 +365,23 @@ public class Gui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem aboutMenu;
+    private javax.swing.JRadioButtonMenuItem blackColorMenu;
+    private javax.swing.JRadioButtonMenuItem defaultColorMenu;
+    private javax.swing.JMenuItem exitMenu;
+    private javax.swing.JRadioButtonMenuItem grayColorMenu;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JMenuItem newMenu;
+    private javax.swing.JMenuItem openMenu;
+    private javax.swing.JMenuItem saveAsMenu;
+    private javax.swing.JMenuItem savemenu;
+    private static javax.swing.JTextArea textBox;
+    private javax.swing.JMenu themesMenu;
     // End of variables declaration//GEN-END:variables
 }
